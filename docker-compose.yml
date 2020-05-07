@@ -1,0 +1,14 @@
+version: '2'
+services:
+  PostgreSQL:
+    container_name: phoenix_test
+    image: postgres:10-alpine
+    ports:
+      - '5634:5432'
+    environment:
+      - POSTGRES_USER=rootuser
+      - POSTGRES_PASSWORD=rootpass
+      - POSTGRES_DB=phoenixapp_test
+    volumes:
+      - ./docker-volumes/postgresql:/var/lib/postgresql
+      - ./pg-init-scripts:/docker-entrypoint-initdb.d
