@@ -12,6 +12,12 @@ config :phoenixapp, Phoenixapp.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox,
   port: "5638"
+  if System.get_env("GITHUB_ACTIONS") do
+    config :phoenixapp, Phoenixapp.Repo,
+      username: "postgres",
+      password: "postgres",
+      port: "5432"
+  end
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
